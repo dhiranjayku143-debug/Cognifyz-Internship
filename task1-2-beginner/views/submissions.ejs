@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Submissions</title>
+</head>
+<body style="font-family: Arial, sans-serif; max-width: 900px; margin: 30px auto; padding: 0 15px;">
+  <h1 style="color: #2c3e50;">All Submissions (<%= submissions.length %>)</h1>
+  <a href="/">+ Add new</a>
+  <br><br>
+
+  <% if (submissions.length === 0) { %>
+    <p>Abhi koi submission nahi hai.</p>
+  <% } else { %>
+    <table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+      <tr style="background:#ecf0f1;">
+        <th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Age</th>
+        <th>Gender</th><th>Country</th><th>Hobbies</th><th>Time</th>
+      </tr>
+      <% submissions.forEach(function(s) { %>
+        <tr>
+          <td><%= s.id %></td>
+          <td><%= s.name %></td>
+          <td><%= s.email %></td>
+          <td><%= s.phone %></td>
+          <td><%= s.age %></td>
+          <td><%= s.gender %></td>
+          <td><%= s.country %></td>
+          <td><%= s.hobbies.length ? s.hobbies.join(', ') : '-' %></td>
+          <td><%= s.createdAt %></td>
+        </tr>
+      <% }) %>
+    </table>
+  <% } %>
+</body>
+</html>

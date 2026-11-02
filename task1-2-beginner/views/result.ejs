@@ -4,15 +4,18 @@
   <meta charset="UTF-8">
   <title>Submission Result</title>
 </head>
-<body>
-  <h1>Thank you, <%= name %>!</h1>
-  <p>We received your details:</p>
+<body style="font-family: Arial, sans-serif; max-width: 520px; margin: 30px auto; padding: 0 15px;">
+  <h1 style="color: #27ae60;">Thank you, <%= entry.name %>!</h1>
+  <p>Data save ho gaya:</p>
   <ul>
-    <li><strong>Phone:</strong> <%= phone %></li>
-    <li><strong>City:</strong> <%= city %></li>
-    <li><strong>Email:</strong> <%= email %></li>
-    <li><strong>Message:</strong> <%= message %></li>
+    <li><strong>Email:</strong> <%= entry.email %></li>
+    <li><strong>Phone:</strong> <%= entry.phone %></li>
+    <li><strong>Age:</strong> <%= entry.age %></li>
+    <li><strong>Gender:</strong> <%= entry.gender %></li>
+    <li><strong>Country:</strong> <%= entry.country %></li>
+    <li><strong>Hobbies:</strong> <%= entry.hobbies.length ? entry.hobbies.join(', ') : '-' %></li>
+    <li><strong>Message:</strong> <%= entry.message %></li>
   </ul>
-  <a href="/">Go back</a>
+  <a href="/">Go back</a> | <a href="/submissions">View all submissions</a>
 </body>
 </html>

@@ -3,28 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Form</title>
+  <title>Registration Form</title>
 </head>
-<body>
-  <h1>Contact Us</h1>
+<body style="font-family: Arial, sans-serif; max-width: 520px; margin: 30px auto; padding: 0 15px;">
+  <h1 style="color: #2c3e50;">Registration Form</h1>
+  <p><a href="/submissions">View submissions</a> | <a href="/about">About</a></p>
 
-  <form action="/submit" method="POST">
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" required><br><br>
+  <% if (errors.length > 0) { %>
+    <div style="background:#fdecea; border:1px solid #e74c3c; color:#c0392b; padding:10px; margin-bottom:15px; border-radius:5px;">
+      <strong>Server errors:</strong>
+      <ul>
+        <% errors.forEach(function(err) { %>
+          <li><%= err %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
 
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" required><br><br>
+  <div id="clientErrors" style="display:none; background:#fff3cd; border:1px solid #f0ad4e; color:#8a6d3b; padding:10px; margin-bottom:15px; border-radius:5px;"></div>
 
-    <label for="phone">Phone:</label><br>
-<input type="tel" id="phone" name="phone"><br><br>
+  <form id="regForm" action="/submit" method="POST" onsubmit="return validateForm()">
+    <label>Name:</label><br>
+    <input type="text" id="name" name="name" value="<%= old.name || '' %>" style="width:100%; padding:8px;"><br><br>
 
-<label for="city">City:</label><br>
-<input type="text" id="city" name="city"><br><br>
+    <label>Email:</label><br>
+    <input type="text" id="email" name="email" value="<%= old.email || '' %>" style="width:100%; padding:8px;"><br><br>
 
-    <label for="message">Message:</label><br>
-    <textarea id="message" name="message" rows="4" required></textarea><br><br>
+    <label>Phone (optional, 10 digits):</label><br>
+    <input type="text" id="phone" name="phone" value="<%= old.phone || '' %>" style="width:100%; padding:8px;"><br><br>
 
-    <button type="submit">Submit</button>
+    <label>Age:</label><br>
+    <input type="number" id="age" name="age" value="<%= old.age || '' %>" style="width:100%; padding:8px;"><br><br>
+
+    <label>Gender:</label><br>
+    <input type="radio" name="gender" value="Male" <%= old.gender === 'Male' ? 'checked' : '' %>> Male
+    <input type="radio" name="gender" value="Female" <%= old.gender === 'Female' ? 'checked' : '' %>> Female
+    <input type="radio" name="gender" value="Other" <%= old.gender === 'Other' ? 'checked' : '' %>> Other
+    <br><br>
+
+    <label>Country:</label><br>
+    <select id="country" name="country" style="width:100%; padding:8px;">
+      <option value="">-- Select --</option>
+      <% ['India', 'USA', 'UK', 'Canada'].forEach(function(c) { %>
+        <option value="<%= c %>" <%= old.country === c ? 'selected' : '' %>><%= c %></option>
+      <% }) %>
+    </select><br><br>
+
+    <label>Hobbies:</label><br>
+    <input type="checkbox" name="hobbies" value="Coding"> Coding
+    <input type="checkbox" name="hobbies" value="Music"> Music
+    <input type="checkbox" name="hobbies" value="Sports"> Sports
+    <br><br>
+
+    <label>Message:</label><br>
+    <textarea id="message" name="message" rows="4" style="width:100%; padding:8px;"><%= old.message || '' %></textarea><br><br>
+
+    <button type="submit" style="background:#3498db; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Submit</button>
   </form>
+
+  <script>
+    function validateForm() {
+      var errors = [];
+      var name = document.getElementById('name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var phone = document.getElementById('phone').value.trim();
+      var age = Number(document.getElementById('age').value);
+      var gender = document.querySelector('input[name="gender"]:checked');
+      var country = document.getElementById('country').value;
+      var message = document.getElementById('message').value.trim();
+
+      if (name.length < 3) errors.push('Name kam se kam 3 characters ka hona chahiye.');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Sahi email address daalo.');
+      if (phone && !/^[0-9]{10}$/.test(phone)) errors.push('Phone number 10 digits ka hona chahiye.');
+      if (!age || age < 18 || age > 100) errors.push('Age 18 se 100 ke beech honi chahiye.');
+      if (!gender) errors.push('Gender select karo.');
+      if (!country) errors.push('Country select karo.');
+      if (message.length < 10) errors.push('Message kam se kam 10 characters ka hona chahiye.');
+
+      var box = document.getElementById('clientErrors');
+      if (errors.length > 0) {
+        box.style.display = 'block';
+        box.innerHTML = '<strong>Please fix:</strong><ul><li>' + errors.join('</li><li>') + '</li></ul>';
+        return false;
+      }
+      box.style.display = 'none';
+      return true;
+    }
+  </script>
 </body>
 </html>
