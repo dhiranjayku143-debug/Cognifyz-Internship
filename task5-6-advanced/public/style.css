@@ -13,3 +13,7 @@ li.done span { text-decoration: line-through; color: #999; }
 .del { background: #e74c3c; }
 .del:hover { background: #c0392b; }
 .edit { background: #f39c12; }
+
+#authForm { flex-direction: column; }
+#authMsg { color: #c0392b; min-height: 20px; }
+a { color: #3498db; }
