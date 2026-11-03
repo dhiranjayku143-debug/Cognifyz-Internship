@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/app', (req, res) => {
+  res.render('app');
+});
+
 app.listen(PORT, () => {
   console.log(`Server chal raha hai: http://localhost:${PORT}`);
 });
