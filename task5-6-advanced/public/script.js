@@ -83,6 +83,14 @@ function showApp() {
   loadTasks();
 }
 
+function showApp() {
+  authBox.style.display = 'none';
+  taskBox.style.display = 'block';
+  document.getElementById('welcome').textContent = localStorage.getItem('username');
+  loadTasks();
+  loadQuote();
+}
+
 async function loadTasks() {
   const { ok, data } = await api('/api/tasks');
   if (!ok) return;
@@ -134,6 +142,11 @@ async function updateTask(id, changes) {
 async function deleteTask(id) {
   await api('/api/tasks/' + id, 'DELETE');
   loadTasks();
+}
+
+async function loadQuote() {
+  const { ok, data } = await api('/api/quote');
+  document.getElementById('quote').textContent = ok ? `"${data.quote}" — ${data.author}` : '';
 }
 
 if (getToken()) showApp(); else showAuth();
