@@ -4,7 +4,7 @@ const PORT = 3001;
 
 app.set('view engine', 'ejs');
 
-// public folder ki files (CSS, images) serve karne ke liye
+// Serve static files (CSS, images) from the public folder
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
@@ -16,5 +16,5 @@ app.get('/app', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server chal raha hai: http://localhost:${PORT}`);
+  console.log(`Server is running at http://localhost:${PORT}`);
 });

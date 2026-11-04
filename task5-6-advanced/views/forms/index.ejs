@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -72,13 +72,13 @@
       var country = document.getElementById('country').value;
       var message = document.getElementById('message').value.trim();
 
-      if (name.length < 3) errors.push('Name kam se kam 3 characters ka hona chahiye.');
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Sahi email address daalo.');
-      if (phone && !/^[0-9]{10}$/.test(phone)) errors.push('Phone number 10 digits ka hona chahiye.');
-      if (!age || age < 18 || age > 100) errors.push('Age 18 se 100 ke beech honi chahiye.');
-      if (!gender) errors.push('Gender select karo.');
-      if (!country) errors.push('Country select karo.');
-      if (message.length < 10) errors.push('Message kam se kam 10 characters ka hona chahiye.');
+      if (name.length < 3) errors.push('Name must be at least 3 characters long.');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Please enter a valid email address.');
+      if (phone && !/^[0-9]{10}$/.test(phone)) errors.push('Phone number must be exactly 10 digits.');
+      if (!age || age < 18 || age > 100) errors.push('Age must be between 18 and 100.');
+      if (!gender) errors.push('Please select a gender.');
+      if (!country) errors.push('Please select a country.');
+      if (message.length < 10) errors.push('Message must be at least 10 characters long.');
 
       var box = document.getElementById('clientErrors');
       if (errors.length > 0) {
