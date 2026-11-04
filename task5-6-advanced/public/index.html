@@ -1,36 +1,79 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task Manager</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Cognifyz Full Stack Internship | Projects</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: #2c3e50; }
+    header { background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-align: center; padding: 60px 20px; }
+    header h1 { margin: 0 0 10px; font-size: 2.2rem; }
+    header p { margin: 0; opacity: 0.9; }
+    main { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    h2 { margin: 30px 0 15px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: white; border-radius: 15px; padding: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+    .tag { font-size: 0.75rem; font-weight: 600; color: #764ba2; text-transform: uppercase; letter-spacing: 1px; }
+    .card h3 { margin: 6px 0 8px; }
+    .card p { margin: 0 0 15px; color: #555; font-size: 0.95rem; flex: 1; }
+    .links a { display: inline-block; margin: 0 8px 8px 0; padding: 8px 14px; background: #3498db; color: white; text-decoration: none; border-radius: 8px; font-size: 0.9rem; }
+    .links a:hover { background: #2980b9; }
+    footer { text-align: center; padding: 30px; color: #777; }
+  </style>
 </head>
 <body>
-  <div class="container" id="authBox">
-    <h1 id="authTitle">Login</h1>
-    <form id="authForm">
-      <input type="text" id="username" placeholder="Username" style="display:none;">
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <button type="submit" id="authBtn">Login</button>
-    </form>
-    <p id="authMsg"></p>
-    <p><a href="#" id="switchLink">Account nahi hai? Signup karo</a></p>
-  </div>
+  <header>
+    <h1>Full Stack Development Internship</h1>
+    <p>Cognifyz Technologies | All 8 tasks in one place</p>
+  </header>
 
-  <div class="container" id="taskBox" style="display:none;">
-    <h1>Task Manager</h1>
-    <p>Welcome, <strong id="welcome"></strong> | <a href="#" id="logoutLink">Logout</a></p>
-    <form id="taskForm">
-      <input type="text" id="taskInput" placeholder="Naya task likho...">
-      <button type="submit">Add</button>
-    </form>
-    <p id="message"></p>
-    <p id="quote" style="font-style: italic; color: #555;"></p>
-    <ul id="taskList"></ul>
-  </div>
+  <main>
+    <h2>Level 1: Beginner</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="tag">Task 1 and 2</span>
+        <h3>Forms, Validation and Server Rendering</h3>
+        <p>Express with EJS templates, client-side and server-side validation, and temporary in-memory storage.</p>
+        <div class="links">
+          <a href="/forms">Open form</a>
+          <a href="/forms/submissions">Submissions</a>
+          <a href="/forms/about">About</a>
+        </div>
+      </div>
+    </div>
 
-  <script src="script.js"></script>
+    <h2>Level 2: Intermediate</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="tag">Task 3</span>
+        <h3>Responsive Landing Page</h3>
+        <p>Bootstrap layout, CSS transitions and animations, fully responsive design.</p>
+        <div class="links"><a href="/task3/">Open page</a></div>
+      </div>
+      <div class="card">
+        <span class="tag">Task 4</span>
+        <h3>SPA with Dynamic DOM</h3>
+        <p>Client-side routing, password strength meter and live DOM updates.</p>
+        <div class="links"><a href="/task4/">Open app</a></div>
+      </div>
+    </div>
+
+    <h2>Level 3 and 4: Advanced and Expert</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="tag">Task 5 to 8</span>
+        <h3>Task Manager (Full Stack)</h3>
+        <p>REST API with CRUD, MongoDB, JWT authentication, rate limiting, external API, caching, logging and background jobs.</p>
+        <div class="links">
+          <a href="/task5-8/">Open app</a>
+          <a href="/api/tasks">API (needs login)</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>#cognifyz #cognifyzTech #cognifyzTechnologies</footer>
 </body>
 </html>

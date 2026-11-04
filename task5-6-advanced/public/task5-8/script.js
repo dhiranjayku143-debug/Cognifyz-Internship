@@ -1,4 +1,4 @@
-const authBox = document.getElementById('authBox');
+﻿const authBox = document.getElementById('authBox');
 const taskBox = document.getElementById('taskBox');
 const authForm = document.getElementById('authForm');
 const authTitle = document.getElementById('authTitle');
@@ -36,7 +36,7 @@ switchLink.onclick = e => {
   authTitle.textContent = isSignup ? 'Signup' : 'Login';
   authBtn.textContent = isSignup ? 'Signup' : 'Login';
   usernameInput.style.display = isSignup ? 'block' : 'none';
-  switchLink.textContent = isSignup ? 'Account hai? Login karo' : 'Account nahi hai? Signup karo';
+  switchLink.textContent = isSignup ? 'Already have an account? Log in' : 'Don't have an account? Sign up';
   authMsg.textContent = '';
 };
 
@@ -111,7 +111,7 @@ async function loadTasks() {
     edit.textContent = 'Edit';
     edit.className = 'edit';
     edit.onclick = () => {
-      const title = prompt('Naya title:', t.title);
+      const title = prompt('New title:', t.title);
       if (title !== null) updateTask(t._id, { title });
     };
 
@@ -146,7 +146,7 @@ async function deleteTask(id) {
 
 async function loadQuote() {
   const { ok, data } = await api('/api/quote');
-  document.getElementById('quote').textContent = ok ? `"${data.quote}" — ${data.author}` : '';
+  document.getElementById('quote').textContent = ok ? `"${data.quote}" â€” ${data.author}` : '';
 }
 
 if (getToken()) showApp(); else showAuth();

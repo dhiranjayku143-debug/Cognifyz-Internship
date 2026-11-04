@@ -1,0 +1,63 @@
+html { scroll-behavior: smooth; }
+
+body { font-family: 'Segoe UI', Arial, sans-serif; }
+
+/* Navbar */
+.custom-nav { background: rgba(44, 62, 80, 0.95); transition: background 0.3s; }
+.custom-nav .nav-link { transition: color 0.3s, transform 0.3s; }
+.custom-nav .nav-link:hover { color: #f1c40f; transform: translateY(-2px); }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+.hero-btn { transition: transform 0.3s, box-shadow 0.3s; }
+.hero-btn:hover { transform: scale(1.08); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+
+/* Animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeInUp 1.2s ease-out; }
+
+/* Section titles */
+.section-title { font-weight: 700; color: #2c3e50; }
+
+/* Feature cards */
+.feature-card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+}
+.feature-card .icon { font-size: 3rem; margin-bottom: 10px; }
+
+/* About box */
+.about-box {
+  display: inline-block;
+  padding: 60px 40px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Footer */
+.custom-footer { background: #2c3e50; }
+
+/* Mobile */
+@media (max-width: 576px) {
+  .hero h1 { font-size: 2rem; }
+}

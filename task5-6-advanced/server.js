@@ -1,4 +1,5 @@
 ﻿require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const rateLimit = require('express-rate-limit');
@@ -7,10 +8,16 @@ const logger = require('./middleware/logger');
 const app = express();
 const PORT = process.env.PORT || 3002;
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 // Middleware pipeline: logging first, then body parsing
 app.use(logger);
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Task 1-2: server-rendered forms
+app.use('/forms', require('./routes/forms'));
 
 // Rate limiters
 const authLimiter = rateLimit({
@@ -25,6 +32,7 @@ const apiLimiter = rateLimit({
   message: { error: 'Too many requests. Please slow down.' }
 });
 
+// Task 5-8: API
 app.use('/api', apiLimiter);
 app.use('/api/auth', authLimiter, require('./routes/auth'));
 app.use('/api/tasks', require('./routes/tasks'));
@@ -47,9 +55,7 @@ app.listen(PORT, () => console.log(`Server is running at http://localhost:${PORT
 // Connect to MongoDB with automatic retry
 async function connectDB() {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      serverSelectionTimeoutMS: 10000
-    });
+    await mongoose.connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: 10000 });
     console.log('MongoDB connected');
   } catch (err) {
     console.error('MongoDB connection error:', err.message);

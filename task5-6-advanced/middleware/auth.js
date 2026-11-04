@@ -5,7 +5,7 @@ module.exports = function auth(req, res, next) {
   const token = header.startsWith('Bearer ') ? header.slice(7) : null;
 
   if (!token) {
-    return res.status(401).json({ error: 'Login zaroori hai (token nahi mila)' });
+    return res.status(401).json({ error: 'Login required (no token provided)' });
   }
 
   try {
@@ -13,6 +13,7 @@ module.exports = function auth(req, res, next) {
     req.userId = decoded.id;
     next();
   } catch (err) {
-    res.status(401).json({ error: 'Token galat ya expire ho gaya' });
+    res.status(401).json({ error: 'Invalid or expired token' });
   }
 };
+

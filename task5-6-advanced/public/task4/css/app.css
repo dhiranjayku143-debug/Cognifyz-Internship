@@ -1,0 +1,25 @@
+body { background: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; }
+
+.nav-link-spa {
+  color: #ddd; text-decoration: none; margin-left: 18px;
+  padding-bottom: 3px; border-bottom: 2px solid transparent;
+  transition: all 0.3s;
+}
+.nav-link-spa:hover, .nav-link-spa.active { color: #f1c40f; border-bottom-color: #f1c40f; }
+
+.page { animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: none; } }
+
+.form-card { max-width: 480px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+
+/* Password strength bar */
+.strength-track { height: 8px; background: #e0e0e0; border-radius: 5px; overflow: hidden; margin-top: 8px; }
+.strength-bar { height: 100%; width: 0; transition: width 0.4s, background 0.4s; }
+
+.rule { font-size: 0.85rem; color: #c0392b; }
+.rule.ok { color: #27ae60; }
+.rule::before { content: '✗ '; }
+.rule.ok::before { content: '✓ '; }
+
+.field-error { color: #c0392b; font-size: 0.85rem; min-height: 18px; }
+.user-card { background: white; border-radius: 10px; padding: 15px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; 
