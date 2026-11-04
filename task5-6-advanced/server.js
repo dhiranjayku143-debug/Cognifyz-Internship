@@ -41,9 +41,25 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong on the server' });
 });
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
+// Start the HTTP server first so the site is always reachable
+app.listen(PORT, () => console.log(`Server is running at http://localhost:${PORT}`));
+
+// Connect to MongoDB with automatic retry
+async function connectDB() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 10000
+    });
     console.log('MongoDB connected');
-    app.listen(PORT, () => console.log(`Server is running at http://localhost:${PORT}`));
-  })
-  .catch(err => console.error('MongoDB connection error:', err.message));
+  } catch (err) {
+    console.error('MongoDB connection error:', err.message);
+    console.log('Retrying in 5 seconds...');
+    setTimeout(connectDB, 5000);
+  }
+}
+
+mongoose.connection.on('disconnected', () => {
+  console.log('MongoDB disconnected. Reconnecting...');
+});
+
+connectDB();
